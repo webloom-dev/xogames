@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X/O Evolution</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splash-screen">
+        <div class="splash-logo">❌⭕</div>
+        <h1 class="splash-title">X/O Evolution</h1>
+        <div class="splash-loading">
+            <div class="splash-progress" id="splash-progress"></div>
+        </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div class="main-menu" id="main-menu">
+        <h1 class="menu-title">X/O Evolution</h1>
+        <div class="menu-buttons">
+            <button class="btn" id="start-game">
+                <i class="fas fa-play"></i>
+                <span data-en="Start Game" data-ar="ابدأ اللعبة">Start Game</span>
+            </button>
+            <button class="btn btn-secondary" id="store-menu">
+                <i class="fas fa-shopping-cart"></i>
+                <span data-en="Store" data-ar="المتجر">Store</span>
+            </button>
+            <button class="btn btn-secondary" id="settings-menu">
+                <i class="fas fa-cog"></i>
+                <span data-en="Settings" data-ar="الإعدادات">Settings</span>
+            </button>
+        </div>
+        <button class="language-toggle" id="language-toggle">العربية</button>
+        <button class="dark-mode-toggle" id="dark-mode-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Transition Screen -->
+    <div class="transition-screen" id="transition-screen">
+        <div class="transition-circle"></div>
+    </div>
+
+    <!-- Game Container -->
+    <div class="container">
+        <!-- Level Selection Screen -->
+        <div id="level-screen" class="screen level-screen">
+            <div class="header">
+                <h1>X/O Evolution</h1>
+                <div class="stats">
+                    <div class="coins">
+                        <i class="fas fa-coins"></i>
+                        <span id="coin-count">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 data-en="Select Level" data-ar="اختر المرحلة">Select Level</h2>
+            <div class="level-grid" id="level-grid"></div>
+            
+            <div class="pagination">
+                <button id="prev-page" class="btn pagination-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-en="Previous" data-ar="السابق">Previous</span>
+                </button>
+                <span class="page-info" id="page-info">Page 1 of 5</span>
+                <button id="next-page" class="btn pagination-btn">
+                    <span data-en="Next" data-ar="التالي">Next</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button id="back-to-menu" class="btn btn-secondary">
+                    <i class="fas fa-home"></i>
+                    <span data-en="Main Menu" data-ar="القائمة الرئيسية">Main Menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen game-screen">
+            <div class="header">
+                <h1>X/O Evolution</h1>
+                <div class="stats">
+                    <div class="coins">
+                        <i class="fas fa-coins"></i>
+                        <span id="game-coins">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-header">
+                <button id="back-to-levels" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-en="Levels" data-ar="المراحل">Levels</span>
+                </button>
+                <div class="game-info">
+                    <span data-en="Level:" data-ar="المرحلة:">Level:</span>
+                    <span id="current-level">1</span>
+                    <span data-en="Coins:" data-ar="العملات:">Coins:</span>
+                    <span id="game-coins-header">0</span>
+                </div>
+            </div>
+            
+            <div class="symbol-selection" id="symbol-selection">
+                <h3 data-en="Choose Your Symbol" data-ar="اختر رمزك">Choose Your Symbol</h3>
+                <div class="symbols">
+                    <button class="symbol-btn" data-symbol="X">❌</button>
+                    <button class="symbol-btn" data-symbol="O">⭕</button>
+                </div>
+            </div>
+
+            <div class="board-container">
+                <div class="board-grid" id="board-grid"></div>
+            </div>
+            
+            <div class="game-controls">
+                <button id="hint-btn" class="btn hint-btn">
+                    <i class="fas fa-lightbulb"></i>
+                    <span data-en="Hint (15🪙)" data-ar="تلميح (15🪙)">Hint (15🪙)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Store Screen -->
+        <div id="store-screen" class="screen store-screen">
+            <div class="header">
+                <h1>X/O Evolution</h1>
+                <div class="stats">
+                    <div class="coins">
+                        <i class="fas fa-coins"></i>
+                        <span id="store-coins">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 data-en="Store" data-ar="المتجر">Store</h2>
+            
+            <div class="store-tabs">
+                <button class="tab-btn active" data-tab="x-skins">
+                    <span data-en="X Skins" data-ar="أزياء X">X Skins</span>
+                </button>
+                <button class="tab-btn" data-tab="o-skins">
+                    <span data-en="O Skins" data-ar="أزياء O">O Skins</span>
+                </button>
+                <button class="tab-btn" data-tab="board-skins">
+                    <span data-en="Board Skins" data-ar="أزياء اللوحة">Board Skins</span>
+                </button>
+            </div>
+            
+            <div class="store-content">
+                <div id="x-skins" class="tab-content active">
+                    <div class="skins-grid" id="x-skins-grid"></div>
+                </div>
+                <div id="o-skins" class="tab-content">
+                    <div class="skins-grid" id="o-skins-grid"></div>
+                </div>
+                <div id="board-skins" class="tab-content">
+                    <div class="skins-grid" id="board-skins-grid"></div>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <button id="back-to-menu-store" class="btn btn-secondary">
+                    <i class="fas fa-home"></i>
+                    <span data-en="Main Menu" data-ar="القائمة الرئيسية">Main Menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="settings-screen" class="screen settings-screen">
+            <div class="header">
+                <h1>X/O Evolution</h1>
+                <div class="stats">
+                    <div class="coins">
+                        <i class="fas fa-coins"></i>
+                        <span id="settings-coins">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 data-en="Settings" data-ar="الإعدادات">Settings</h2>
+            
+            <div class="settings-container">
+                <div class="setting-item">
+                    <label data-en="Language" data-ar="اللغة">Language</label>
+                    <select id="language-select">
+                        <option value="en" data-en="English" data-ar="الإنجليزية">English</option>
+                        <option value="ar" data-en="Arabic" data-ar="العربية">Arabic</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <label data-en="Difficulty" data-ar="مستوى الصعوبة">Difficulty</label>
+                    <select id="difficulty-select">
+                        <option value="easy" data-en="Easy" data-ar="سهل">Easy</option>
+                        <option value="medium" data-en="Medium" data-ar="متوسط">Medium</option>
+                        <option value="hard" data-en="Hard" data-ar="صعب">Hard</option>
+                        <option value="unbeatable" data-en="Unbeatable" data-ar="لا يمكن هزيمته">Unbeatable</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <label data-en="Game Volume" data-ar="صوت اللعبة">Game Volume</label>
+                    <input type="range" id="game-volume-slider" min="0" max="100" value="80">
+                    <span id="game-volume-value">80%</span>
+                </div>
+                
+                <div class="setting-item">
+                    <label data-en="Background Music Volume" data-ar="صوت الموسيقى الخلفية">Background Music Volume</label>
+                    <input type="range" id="music-volume-slider" min="0" max="100" value="50">
+                    <span id="music-volume-value">50%</span>
+                </div>
+                
+                <div class="setting-item">
+                    <label data-en="Mute Game Sounds" data-ar="كتم أصوات اللعبة">Mute Game Sounds</label>
+                    <label class="switch">
+                        <input type="checkbox" id="mute-game-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <label data-en="Mute Background Music" data-ar="كتم الموسيقى الخلفية">Mute Background Music</label>
+                    <label class="switch">
+                        <input type="checkbox" id="mute-music-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <label data-en="Dark Mode" data-ar="الوضع الليلي">Dark Mode</label>
+                    <label class="switch">
+                        <input type="checkbox" id="dark-mode-setting">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button id="back-to-menu-settings" class="btn btn-secondary">
+                    <i class="fas fa-home"></i>
+                    <span data-en="Main Menu" data-ar="القائمة الرئيسية">Main Menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Result Modal -->
+    <div id="result-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="result-message">🎉 You Win!</h3>
+            <p id="coins-earned" data-en="Coins earned: 25" data-ar="العملات المكتسبة: 25">Coins earned: 25</p>
+            <div class="modal-buttons">
+                <button id="next-match" class="btn">
+                    <i class="fas fa-arrow-right"></i>
+                    <span data-en="Next Match" data-ar="المباراة التالية">Next Match</span>
+                </button>
+                <button id="back-to-menu-result" class="btn btn-secondary">
+                    <i class="fas fa-home"></i>
+                    <span data-en="Main Menu" data-ar="القائمة الرئيسية">Main Menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="click-sound" preload="auto">
+        <source src="sounds/click.mp3">
+    </audio>
+    <audio id="win-sound" preload="auto">
+        <source src="sounds/win.mp3">
+    </audio>
+    <audio id="lose-sound" preload="auto">
+        <source src="sounds/lose.mp3">
+    </audio>
+    <audio id="background-music" loop>
+        <source src="sounds/win.mp3">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
